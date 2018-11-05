@@ -13,9 +13,9 @@
   <body>
   <ul>
     <li>
-      <a href="/SupRailsTest_war_exploded/train-stations" >Stations</a>
-      <a href="/SupRailsTest_war_exploded/trips" >Trips</a>
-      <a href="/SupRailsTest_war_exploded/admin/train-stations/add" >Add Train Station</a>
+      <a href="/SupRails_war_exploded/train-stations" >Stations</a>
+      <a href="/SupRails_war_exploded/trips" >Trips</a>
+      <a href="/SupRails_war_exploded/admin/train-stations/add" >Add Train Station</a>
     </li>
   </ul>
   </body>
