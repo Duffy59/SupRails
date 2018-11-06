@@ -1,5 +1,11 @@
 ### SupRails 
 
+#### Prés requis :
+
+* Avoir une jdk 1.7 minimum.
+* Avoir un serveur glassfish installé sur la machine.
+* Avoir créé une ressource jdbc mysql (appelé jdbc/suprails).
+
 #### Déploiement sur glashfish depuis Intellij :
 
 #### Configuration des dossiers
@@ -12,12 +18,12 @@
 
 * Cliquez droit sur la racine du projet puis Open Module Settings (ou appuyez sur F4)
 * Onglet Project : 
-    ** Choisissez une JDK 8 dans le menu déroulant
-    ** Choisissez java 8 dans project language level
-    ** Selectionnez le repertoire out (créé ci dessus) dans Project compiler output.
+* Choisissez une JDK 8 dans le menu déroulant
+* Choisissez java 8 dans project language level
+* Selectionnez le repertoire out (créé ci dessus) dans Project compiler output.
 * Onglet Modules :
-    ** Cliquez sur le + vert a droite : Library... choisissez Glassfish X.X.X et Glassfish X.X.X-EJB
-    ** Cliquez sur le + vert à droite : Jars or directories ... chosissez le repertoire web/WEB-INF/lib
+* Cliquez sur le + vert a droite : Library... choisissez Glassfish X.X.X et Glassfish X.X.X-EJB
+* Cliquez sur le + vert à droite : Jars or directories ... chosissez le repertoire web/WEB-INF/lib
 * Onglet Facets : Appuyez sur le + vert puis Chosissez Web et ensuite selectionnez le seul choix proposer puis OK.
 * Assurez vous que le chemin vers le repertoire web est correct (par défaut idea le place dans .idea mais c'est incorrect)
 
