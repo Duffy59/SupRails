@@ -7,16 +7,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>Test</title>
-  </head>
-  <body>
-  <ul>
-    <li>
-      <a href="/SupRails_war_exploded/train-stations" >Stations</a>
-      <a href="/SupRails_war_exploded/trips" >Trips</a>
-      <a href="/SupRails_war_exploded/admin/train-stations/add" >Add Train Station</a>
-    </li>
-  </ul>
-  </body>
+<head>
+  <title>Test</title>
+</head>
+<body>
+
+<%
+  String contextPath = getServletConfig().getServletContext().getContextPath();
+%>
+<ul>
+  <li>
+    <a href="<%=contextPath%>/train-stations" >Stations</a>
+    <a href="<%=contextPath%>/trips" >Trips</a>
+    <a href="<%=contextPath%>/admin/train-stations/add" >Add Train Station</a>
+  </li>
+</ul>
+</body>
 </html>
