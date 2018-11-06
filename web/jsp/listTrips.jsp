@@ -43,6 +43,9 @@
                             <c:url value="/admin/trips/delete" var="deleteTripUrl">
                                 <c:param name="id" value="${trip.id}" />
                             </c:url>
+                            <c:url value="/trips/addCustomerOrder" var="orderTripUrl">
+                                <c:param name="id" value="${trip.id}" />
+                            </c:url>
 
                             <td><c:out value="${trip.departureStation.name}" /></td>
                             <td><c:out value="${trip.arrivalStation.name}" /></td>
@@ -50,6 +53,9 @@
                             <c:if test="${not empty user}">
                                 <td>
                                     <a href="${deleteTripUrl}">Delete</a>
+                                </td>
+                                <td>
+                                    <a href="${orderTripUrl}">Buy it !</a>
                                 </td>
                             </c:if>
 
