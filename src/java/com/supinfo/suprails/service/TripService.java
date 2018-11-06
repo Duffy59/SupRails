@@ -1,7 +1,10 @@
 package com.supinfo.suprails.service;
 
 import com.supinfo.suprails.dao.TripDao;
+import com.supinfo.suprails.entity.TrainStation;
 import com.supinfo.suprails.entity.Trip;
+
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -31,6 +34,18 @@ public class TripService {
     
     public Trip findTripById(Long tripId) {
         return tripDao.findTripById(tripId);
+    }
+
+
+    /**
+     * Permet de récupérer les voyages avec filtres.
+     * @param departure point de départ.
+     * @param arrival point d'arrivée.
+     * @param price prix.
+     * @return la liste des voyages.
+     */
+    public List<Trip> getTripsByFilter(TrainStation departure, TrainStation arrival, BigDecimal price) {
+        return tripDao.getTripsByFilter(departure, arrival, price);
     }
 
 }

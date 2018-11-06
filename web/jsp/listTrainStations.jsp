@@ -24,6 +24,7 @@
             <c:url value="/admin/train-stations/add" var="addTrainStationUrl" />
             <a href="${addTrainStationUrl}">Add a new station</a>
         </c:if>
-        
+        <c:url value="/" var="welcomeUrl"></c:url>
+        <a href="${welcomeUrl}" >Back to welcome page</a>
     </body>
 </html>

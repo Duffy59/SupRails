@@ -38,5 +38,7 @@
                 <input type="submit" value="Order" />
             </p>
         </form>
+        <c:url value="/trips" var="tripsUrl"></c:url>
+        <a href="${tripsUrl}" >Back to trips</a>
     </body>
 </html>
