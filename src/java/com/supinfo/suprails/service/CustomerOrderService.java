@@ -14,10 +14,15 @@ public class CustomerOrderService {
     @EJB
     private CustomerOrderDao customerOrderDao;
 
+    @EJB
+    private PrinterMessageService printerMessageService;
+
     public CustomerOrder processCustomerOrder(CustomerOrder customerOrder) {
         CustomerOrder persistedCustomerOrder = customerOrderDao.addCustomerOrder(customerOrder);
 
         sendEmail(customerOrder.getCustomer());
+
+        printerMessageService.printCustomerOrder(customerOrder);
 
         return persistedCustomerOrder;
     }
