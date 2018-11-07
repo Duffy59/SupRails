@@ -1,0 +1,127 @@
+* Comment fait on pour déclarer une servlet (avec Servlet 3.0) ?
+Il faut créer une classe qui étend HttpServlet et ajouter une annotation @WebServlet(urlPattern = "/pattern")
+
+* Comment déclare on un session bean (Avec EJB 3.1) ?
+Optionnel si Local : créer une interface annoter avec @Remote ou @Local, créer une classe, annoter avec @Stateless ou @Statefull
+
+* Quel sont les deux accesseurs possible pour un Session Bean ?
+@Local pour un accès local et @Remote pour un accès à distance (depuis un autre applicatif).
+
+* Quel sont les deux types de sessions beans ? Quel est leur différences ?
+@Stateless : Ne conserve aucun états entre deux appel (pour un même utilisateur), @Statefull : conserve son état entre deux appel pour un même utilisateur.
+
+* Comment s'apelle la mécanique permettant d'utiliser l'instance d'un service sans avoir à utiliser le mot clé "new" ?
+Injection de dépendence
+
+* De quel manière met on en place cette mécanique (Que doit on faire dans le code) ?
+Annoter une variable de classe avec @EJB (on doit uniquement préciser le nom du service si celui ci comporte plusieurs implémentation pour une même interface).
+
+* Comment transforme on un objet java en Entité JPA ?
+Annoter la classe avec @Entity
+
+
+* Comment fait on pour déclarer la primary key de la table représenté par notre objet ?
+Annoter l'attribut de classe avec un @Id
+
+* Comment fait on pour indiquer que la primary key sera auto-incrémentale ?
+Annoter l'attribut de classe avec un @GeneratedValue
+
+* Comment fait on une jointure en JPA ?
+trois annotations possible @ManyToOne, @OneToMany et @OneToOne ou @ManyToMany
+
+* Comment fait on pour ne pas créer une table si on a une Entity comme attribut d'une autre entité ?
+Il faut annoter l'attribut avec @Embbeded et annoter la classe de l'attribut avec @Embeddebel
+
+* Quel classe est nécéssaire pour intéragir avec la base de donnée en JPA ? (L'objet qui permet de récupérer, créer modifier supprimer ...)
+L'EntityManager
+
+* Comment fait on pour récupérer une instance de cette classe dans un projet EJB 3.1 ?
+Il faut créer un attribut de classe typé EntityMananager et l'annoter avec @PersistenceContext(unitName = "nom_du_pu"), nom_du_pu est déclaré dans un fichier persistence.xml situé dans src/META-INF.
+
+* Quels sont les 3 stratégies d'héritages possible en JPA ? Quel sont leur différences ? Quel est le resultat sur le schema de Base de donnée ?
+SINGLE_TABLE = Tout dans une seule table et gère le type via une enum.
+TABLE_PER_CLASS = Une table est généré par classe (complétement séparé dans le schema).
+JOINED = Pour deux enfant ça va créer 3 tables, une pour le parent et une par enfant avec des FK.
+
+* Quel est le nom de l'api java permettant de créer des requêtes dans utiliser de SQL ou JPQL ? Quel est son avantage ?
+Criteria, Vérification de la structure de la requête a la compilation et pas au runtime.
+
+* Quest-ce que JNDI ? Comment s'en sert on ?
+C'est un annuaire permettant de récupérer des ressources déclaré soit dans le code soit dans le serveur glassfish comme des Sessions Bean ou des queue/Jms ou une ressource JDBC par exemple.
+En EJB 3.1 on peux utiliser des annotation du type @EJB ou @PersitenceContext ou @Ressource pour récupérer une instance de cette ressource.
+
+* Quel sont les deux type de destination proposé par JMS ? Quel est la différence entre les deux ?
+Les Queues ou les topics, un topic a un producteur et plusieurs consommateurs, une queue à un producteur et un seul consommateur.
+
+* De quoi a on besoin pour utiliser une Queue JMS au niveau du code ? Comment fait on pour récupérer ces éléments ?
+On a besoin d'un ConnectionFactory et d'une destination (queu ou topic à créer dans l'interface d'admin de glassfish). On peux récupérer ces deux élément comme ceci :
+@Resource(mappedName="jms/suprailsConnectionFactory")
+private ConnectionFactory connectionFactory;
+
+@Resource(mappedName="jms/suprailsQueue")
+private Destination destination;
+
+* Quels sont les deux roles possible avec une queue JMS ?
+être producteur, c'est a dire pousser les message dans la queue. Etre consumer et lire des messages dans la queue.
+
+
+
+* Quel protocol va on utiliser pour faire fonctionner des WebService (Soap ou REST)
+http
+
+* Quel sont les 4 verbes http principaux ? Peux tu me les décrires ?
+GET = récupérer des informations.
+POST = Créer une donnée.
+PUT = Modifier une donnée.
+DELETE = Supprimer une donnée.
+
+* Comment appel on le contenu d'une requête SAOP ? De quoi est il composé ?
+Le contenu est appelé Soap Enveloppe, et l'enveloppe est composé d'un header et d'un body.
+
+* Sur quel format de donnée est basée SOAP ?
+XML
+
+* Comment appel on le fichier qui décrit exactement un service SAOP et la façon de commuquer avec lui ?
+WSDL
+
+* Comment appel on l'api Java permettant de créer et de consommer des Web Services SOAP ?
+Jax-ws pour le SAOP, Jax-RS pour le REST.
+
+* Comment fait on pour déclarer un WebService (avec l'api de la question précédente) ?
+Il faut créer une classe java et l'annoter avec @WebService(serviceName="/pathToMyService").
+
+* Quel sont les anotations utiles pour décrire son web services et des méthodes ?
+@WebMethod(name="nomDeMaMethode") pour re définir les méthodes, et @WebParam(name="nomDeMonParam") pour redefinir les params.
+
+* De quel utilitaire a-t-on besoin pour générer les classes utile pour consommer un web service ?
+exemple : wsimport -s src -d bin http://localhost:8080/SupRails_war_exploded/soap/trips?WSDL
+
+* De quoi a ton besoin pour générer ces classes ?
+On doit lui passer l'url vers le WSDL de mon web service SOAP.
+
+* Comment fonctionne une ressource REST ? De quoi un client à il besoin pour communiquer avec ce genre d'api ?
+On doit connaitre le chemin vers la ressource et quelle Verbe HTTP utiliser (post, get, delete, put).
+
+* A quoi servent les 4 principaux verbes HTTP en REST ?
+GET = récupérer des informations.
+POST = Créer une donnée.
+PUT = Modifier une donnée.
+DELETE = Supprimer une donnée.
+
+* Comment s'appelle l'api permettant de faire du REST ?
+JAX-RS
+
+* Comment fait on pour déclarer une ressource REST avec l'api vue dans le cours ?
+On crée une classe, on l'annote avec @Path("Path/to/ressource"), puis on crée au moins une méthode avec un @GET ou @POST ou @PUT ou @DELETE
+
+* Comment fait on pour indiquer qu'une ressource REST peux consommer du XML ou du JSON ?
+On annote la méthode ou la classe avec @Consummes(MediaType.APPLICATION_JSON) ou XML ou ce que tu veux.
+
+* Comment fait on pour récupérer une variable contenu dans l'url depuis une méthode java (qui est une ressource REST) ?
+On crée un paramètre de méthode et on l'annote avec @PathParam(value="nomDuParam"), on déclare dans le path une variable entouré par des accolades {id}
+
+* Quel est le nom de l'api permettant de transformer des objets java en json ou XML et inversement ?
+JAXB ou jackson
+
+* Que doit on faire dans le code pour sérialiser/dé-sérialiser un objet java en json avec l'api vu dans le cours ? et en XML ?
+En json, il suffis que l'objet implémente l'interface Serialisable, pour le XML il faut Annoter la classe avec @XmlRootElement au minium.
